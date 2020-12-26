@@ -9,7 +9,7 @@ Usage:    lbase64 [options] <input text>
   -h, --help     display this message
   -d, --decode   decodes input
   -e, --encode   encodes input
-
+```
 
 ## License
 
