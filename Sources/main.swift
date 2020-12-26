@@ -7,32 +7,6 @@
 
 import Foundation
 
-struct Base64{
-    /*
-     @author Louise Shen
-     @version 0.0.1
-     @args The origin String to encode
-     @return The base64 encode
-     */
-    static func toBase64(origin : String) -> String{
-        let utf8EncodeData = origin.data(using: String.Encoding.utf8, allowLossyConversion: true)
-        let base64String = utf8EncodeData?.base64EncodedString(options: Data.Base64EncodingOptions(rawValue: UInt(0)))
-        return base64String!
-    }
-
-    /*
-     @author Louise Shen
-     @version 0.0.1
-     @args The base64 String to decode
-     @return The origin decode
-     */
-    static func toString(origin : String) -> String{
-        let base64Data = NSData(base64Encoded: origin, options: NSData.Base64DecodingOptions(rawValue: 0))
-        let stringWithDecode = NSString(data: base64Data! as Data, encoding: String.Encoding.utf8.rawValue)
-        return stringWithDecode! as String
-    }
-}
-
 let VERSION = "0.0.1"
 
 let HELP_MESSAGE =
