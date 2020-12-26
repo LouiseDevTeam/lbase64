@@ -13,4 +13,4 @@ Usage:    lbase64 [options] <input text>
 
 ## License
 
-Macondo is available under the MIT license.
+lbase64 is available under the MIT license.
