@@ -54,8 +54,9 @@ struct Base64{
             count += 1
         }
 
+        //avoid compile warning
         for _ in 0 ..< placeholderCnt {
-            res.popLast()
+            let _ = res.popLast()
         }
         for _ in 0 ..< placeholderCnt {
             res.append("=")
@@ -91,20 +92,5 @@ struct Base64{
             count += 1
         }
         return String(data: data, encoding: .utf8)!
-    }
-
-    private static func splitBy(length : Int,value : String) -> [String] {
-        var res = [String]()
-    
-        for i in 0 ..< value.count / length {
-            if (i + 1) * length > value.count {
-                break;
-            }
-            let startIndex = value.index(value.startIndex, offsetBy: i * length)
-            let endIndex = value.index(value.startIndex, offsetBy: (i + 1) * length)
-            res.append(String(value[startIndex ..< endIndex]))
-        }
-    
-        return res
     }
 }
