@@ -7,7 +7,7 @@
 
 import Foundation
 
-let VERSION = "0.0.1"
+let VERSION = "0.0.2-beta.1"
 
 let HELP_MESSAGE =
 """

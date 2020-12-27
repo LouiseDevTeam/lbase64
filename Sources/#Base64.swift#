@@ -31,7 +31,7 @@ struct Base64{
         var binaryData = Data(origin.utf8)
         let latter : [UInt8] = [0b00000011, 0b00001111, 0b00111111]
         var buffer : UInt8 = 0b00000000
-        var res = String()
+        var res
         var placeholderCnt = 0
 
         for _ in 0 ..< (3 - binaryData.count % 3) % 3 {
@@ -76,6 +76,7 @@ struct Base64{
         for i in origin {
             binaryData.append(Base64DecodeTable[String(i)]!)
         }
+        var res = String()
         var data : Data = Data()
 
         var count = 0
