@@ -1,7 +1,7 @@
 import Foundation
 
 struct Base64{
-    static let Base64Table = ["A","B","C","D","E","F","G",
+    static let Base64EncodeTable = ["A","B","C","D","E","F","G",
                        "H","I","J","K","L","M","N",
                        "O","P","Q","R","S","T","U",
                        "V","W","X","Y","Z",
@@ -14,53 +14,45 @@ struct Base64{
     
     /*
      @author Louise Shen
-     @version 0.0.2
-     @args The origin String to encode
+     @version 0.0.3
+     @args origin
      @return The base64 encode
      */
-    static func toBase64(origin : String) -> String{
-        let binaryData = Data(origin.utf8)
-        var raw = String()
-        for i in binaryData {
-            raw += Byte(value: String(i, radix: 2)).toString()
-        }
-
-        var delta = [String]()
-        var bytes = [Byte]()
-
-        var isRunning = ""
-
-        if raw.count == 16 {
-            isRunning = "="
-    
-            delta.append(String(raw[raw.startIndex ..< raw.index(raw.startIndex, offsetBy: 6)]))
-            delta.append(String(raw[raw.index(raw.startIndex, offsetBy: 6) ..< raw.index(raw.startIndex, offsetBy: 12)]))
-            delta.append(String(raw[raw.index(raw.startIndex, offsetBy: 12) ..< raw.endIndex]))
-    
-            delta[2] += "00"
-    
-        } else if raw.count == 8 {
-            isRunning = "=="
-            
-            delta.append(String(raw[raw.startIndex ..< raw.index(raw.startIndex, offsetBy: 6)]))
-            delta.append(String(raw[raw.index(raw.startIndex, offsetBy: 6) ..< raw.endIndex]))
-            
-            delta[1] += "0000"
-        } else {
-            isRunning = ""
-            delta = splitBy(length: 6, value: raw)
-        }
-
-        for i in delta {
-            bytes.append(Byte(value: i))
-        }
-
+    static func toBase64(origin : String) -> String {
+        var binaryData = Data(origin.utf8)
+        let latter : [UInt8] = [0b00000011, 0b00001111, 0b00111111]
+        var buffer : UInt8 = 0b00000000
         var res = String()
-        for i in bytes {
-            res += Base64Table[Int(i.toString(), radix: 2)!];
+        var placeholderCnt = 0
+
+        for _ in 0 ..< (3 - binaryData.count % 3) % 3 {
+            binaryData.append(0b00000000)
+            placeholderCnt += 1
         }
-        res += isRunning;
-        return res;
+
+        var count = 0
+        for i in binaryData {
+            if count == 3 {
+                buffer = 0b00000000
+                count = 0
+            }
+            let delta = buffer << ((3 - count) << 1)
+            buffer = i & latter[count]
+            res += Base64EncodeTable[Int(delta + (i >> ((count + 1) << 1)))]
+            if count == 2 {
+                res += Base64EncodeTable[Int(buffer)]
+            }
+            count += 1
+        }
+
+        for _ in 0 ..< placeholderCnt {
+            res.popLast()
+        }
+        for _ in 0 ..< placeholderCnt {
+            res.append("=")
+        }
+
+        return res
     }
 
     /*
