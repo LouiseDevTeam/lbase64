@@ -7,7 +7,7 @@
 
 import Foundation
 
-let VERSION = "0.0.2-beta.1"
+let VERSION = "0.0.2-beta.2"
 
 let HELP_MESSAGE =
 """
@@ -16,6 +16,9 @@ Usage:    lbase64 [options] <input text>
   -d, --decode   decodes input
   -e, --encode   encodes input
 
+  e.g.    lbase64 -e "Hello Louise"
+will gets: SGVsbG8gTG91aXNl
+  
 lbase64(Louise Dev Team Base64 \(VERSION))
 """
 
@@ -33,18 +36,18 @@ var input = CommandLine.arguments
 if input.count == 1 {
     print(MISSING_OPTION_OR_INPUT_MESSAGE)
     print(HELP_MESSAGE)
-}else if input.count == 2 {
+} else if input.count == 2 {
     print(MISSING_OPTION_OR_INPUT_MESSAGE)
     print(HELP_MESSAGE)
-}else if input.count == 3 {
+} else if input.count == 3 {
     if input[1] == "-h" || input[1] == "--help" {
         print(HELP_MESSAGE)
-    }else if input[1] == "-d" || input[1] == "--decode" {
+    } else if input[1] == "-d" || input[1] == "--decode" {
         print(Base64.toString(origin: String(input[2])))
-    }else if input[1] == "-e" || input[1] == "--encode" {
+    } else if input[1] == "-e" || input[1] == "--encode" {
         print(Base64.toBase64(origin: String(input[2])))
-    }
-}else{
+    } 
+} else {
     print(TOO_MUCH_INPUT_MESSAGE)
     print(HELP_MESSAGE)
 }
