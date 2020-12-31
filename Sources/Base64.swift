@@ -67,7 +67,7 @@ struct Base64{
 
     /*
      @author Louise Shen
-     @version 0.0.2
+     @version 0.0.3
      @args The base64 String to decode
      @return The origin decode
      */
@@ -75,6 +75,9 @@ struct Base64{
         let latter : [UInt8] = [0b00000011, 0b00001111, 0b00111111]
         var binaryData = [UInt8]()
         for i in origin {
+            if i == "=" {
+                continue
+            }
             binaryData.append(Base64DecodeTable[String(i)]!)
         }
         var data : Data = Data()
