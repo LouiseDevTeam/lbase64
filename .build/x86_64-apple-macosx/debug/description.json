@@ -1,0 +1,19 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "\/Users\/louisshen\/Documents\/EmacsWorkplace\/lbase64\/.build\/x86_64-apple-macosx\/debug\/lbase64PackageTests.xctest\/Contents\/MacOS\/lbase64PackageTests",
+      "packageName" : "lbase64",
+      "productName" : "lbase64PackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "swiftTargetMap" : {
+    "C.lbase64-debug.module" : "lbase64",
+    "C.lbase64Tests-debug.module" : "lbase64Tests"
+  },
+  "testDiscoveryCommands" : {
+
+  }
+}

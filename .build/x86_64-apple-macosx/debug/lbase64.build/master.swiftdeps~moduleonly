@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.3.1 (swiftlang-1200.0.41 clang-1200.0.32.8)"
+options: "7c66338f59da0c4bc0a8912bdcef5c70"
+build_time: [1609738546, 876340000]
+inputs:
+  "/Users/louisshen/Documents/EmacsWorkplace/lbase64/Sources/lbase64/Base64.swift": [1609382846, 843139496]
+  "/Users/louisshen/Documents/EmacsWorkplace/lbase64/Sources/lbase64/main.swift": [1609383035, 726456275]
