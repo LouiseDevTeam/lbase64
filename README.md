@@ -14,6 +14,13 @@ Usage:    lbase64 [options] <input text>
 will gets: SGVsbG8gTG91aXNl
 ```
 
+## Build
+
+```bash
+swiftc main.swift Base64.swift -O -o lbase64
+```
+
 ## License
 
 lbase64 is available under the MIT license.
+
